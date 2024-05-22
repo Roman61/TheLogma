@@ -43,7 +43,6 @@ class UserEngine:
 
     def update(self, index, name='', lastname='', last_enter='1970-01-01 00:00:00', logg_in='', password='', role=-1):
         with Session(autoflush=False, bind=self.engine) as db:
-            # получаем один объект, у которого id=2
             self.user = db.query(User).filter(index == User.id).first()
             if None != self.user:
 
