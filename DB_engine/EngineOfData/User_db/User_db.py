@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from User import Base, User
+from DB_engine.ModelOfData.User_Table.User import User, Base
 
 
-class UserEngine:
+class UserDB:
 
     def __init__(self, IP, db_name='warehouse'):#192.168.5.220/
         self.engine = create_engine("mysql://root:@"+IP+"/"+db_name+"")
@@ -21,17 +21,7 @@ class UserEngine:
             db.commit()  # сохраняем изменения
             print(self.user.id)  # можно получить установленный id
 
-    def readall(self):
-        with Session(autoflush=False, bind=self.engine) as db:
-            # получение всех объектов
-            self.users = db.query(User).all()
-            for usr in self.users:
-                print(f"{usr.id}, {usr.Name}, {usr.LastName}, {usr.LastEnter}, {usr.Loggin}, {usr.Pass}, {usr.Role}")
-        print("Отработал sqlalchemy")
-        return self.users
-
     def readone(self, index):
-        user = None
         with Session(autoflush=False, bind=self.engine) as db:
             # получение всех объектов
             self.user = db.query(User).filter(index == User.id)
@@ -40,6 +30,15 @@ class UserEngine:
 
         print("Отработал sqlalchemy")
         return self.user
+
+    def readall(self):
+        with Session(autoflush=False, bind=self.engine) as db:
+            # получение всех объектов
+            self.users = db.query(User).all()
+            for usr in self.users:
+                print(f"{usr.id}, {usr.Name}, {usr.LastName}, {usr.LastEnter}, {usr.Loggin}, {usr.Pass}, {usr.Role}")
+        print("Отработал sqlalchemy")
+        return self.users
 
     def update(self, index, name='', lastname='', last_enter='1970-01-01 00:00:00', logg_in='', password='', role=-1):
         with Session(autoflush=False, bind=self.engine) as db:

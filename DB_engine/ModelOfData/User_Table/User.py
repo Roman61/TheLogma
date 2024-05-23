@@ -1,8 +1,5 @@
-from sqlalchemy.orm import DeclarativeBase
+from DB_engine.ModelOfData.Based import Base
 from sqlalchemy import Column, Integer, String, Date
-
-
-class Base(DeclarativeBase): pass
 
 
 class User(Base):
@@ -15,4 +12,3 @@ class User(Base):
     Loggin = Column(String)
     Pass = Column(String)
     Role = Column(Integer)
-
