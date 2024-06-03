@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, Date
 
 
 class Shipment(Base):
-    __tablename__ = "Shipment_db"
+    __tablename__ = "Shipment"
 
     id = Column(Integer, primary_key=True, index=True)
     date = Column(Date)

@@ -5,39 +5,48 @@ from DB_engine.ModelOfData.User_Table.User import User, Base
 
 class UserDB:
 
-    def __init__(self, IP, db_name='warehouse'):#192.168.5.220/
-        self.engine = create_engine("mysql://root:@"+IP+"/"+db_name+"")
-        self.users = None
-        self.user = None
+    def __init__(self, ip_connect='', db_name=''):
+        self.db_type = 'mysql'
+        self.db_user = 'root'
+        self.db_password = ''
+        self.ip_connect = '192.168.5.220'
+        self.db_name = 'warehouse'
+        self.engine = create_engine(
+            f"{self.db_type}://{self.db_user}:{self.db_password}@{self.ip_connect}/{self.db_name}")
+        self.users = []
+        self.user = {}
         Base.metadata.create_all(bind=self.engine)
 
-    def add(self, index, name, lastname, last_enter, logg_in, password, role):
+    def add(self, index, name, lastname, last_enter, loggin, password, role):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
-            self.user = User(id=index, Name=name, LastName=lastname, LastEnter=last_enter, Loggin=logg_in, Pass=password,
-                             Role=role)
+            self.user = User(id=index, Name=name, LastName=lastname, LastEnter=last_enter, Loggin=loggin,
+                             Pass=password, Role=role)
             db.add(self.user)  # добавляем в бд
             db.commit()  # сохраняем изменения
-            print(self.user.id)  # можно получить установленный id
+            # print(self.user.id)  # можно получить установленный id
 
     def readone(self, index):
         with Session(autoflush=False, bind=self.engine) as db:
             # получение всех объектов
+            self.users = []
             self.user = db.query(User).filter(index == User.id)
             for usr in self.user:
-                print(f"{usr.id}, {usr.Name}, {usr.LastName}, {usr.LastEnter}, {usr.Loggin}, {usr.Pass}, {usr.Role}")
-
-        print("Отработал sqlalchemy")
-        return self.user
+                self.users.append({'id': usr.id, 'Name': usr.Name, 'LastName': usr.LastName, 'LastEnter': usr.LastEnter,
+                                   'Loggin': usr.Loggin, 'Pass': usr.Pass,
+                                   'Role': usr.Role})
+        # print("Отработал sqlalchemy")
+        return self.users
 
     def readall(self):
+        self.users = []
         with Session(autoflush=False, bind=self.engine) as db:
             # получение всех объектов
-            self.users = db.query(User).all()
-            for usr in self.users:
-                print(f"{usr.id}, {usr.Name}, {usr.LastName}, {usr.LastEnter}, {usr.Loggin}, {usr.Pass}, {usr.Role}")
-        print("Отработал sqlalchemy")
+            users = db.query(User).all()
+            for usr in users:
+                self.users.append({'id': usr.id, 'Name': usr.Name, 'LastName': usr.LastName, 'LastEnter': usr.LastEnter,
+                                   'Loggin': usr.Loggin, 'Pass': usr.Pass, 'Role': usr.Role})
         return self.users
 
     def update(self, index, name='', lastname='', last_enter='1970-01-01 00:00:00', logg_in='', password='', role=-1):
@@ -64,3 +73,10 @@ class UserDB:
 
                 self.user = db.query(User).filter(User.id == index).first()
                 print(f"{self.user.id}.{self.user.Name} ({self.user.LastName})")
+
+    def delete(self, index):
+        with Session(autoflush=False, bind=self.engine) as db:
+            usr = db.query(User).filter(User.id == index).first()
+            db.delete(usr)  # удаляем объект
+            db.commit()  # сохраняем изменения
+        return "Ok"

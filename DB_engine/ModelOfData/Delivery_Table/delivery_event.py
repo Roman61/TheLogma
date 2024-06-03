@@ -12,7 +12,6 @@ class DeliveryEvent(Base):
     User_id = Column(Integer)
 
 
-
 # id Событие по доставке сырья на предприятие
 # Delivery_id
 # Status_id
