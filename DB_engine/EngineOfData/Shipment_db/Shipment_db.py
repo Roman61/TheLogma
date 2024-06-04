@@ -17,6 +17,14 @@ class ShipmentDB:
         self.shipment = {}
         Base.metadata.create_all(bind=self.engine)
 
+    @property
+    def last_id(self):
+        e_s = self.readall()
+        e_s_id = 0
+        if len(e_s) > 0:
+            e_s_id = e_s[len(e_s) - 1]['id']
+        return e_s_id
+
     def add(self, index, date, user_id, consumer_id):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:

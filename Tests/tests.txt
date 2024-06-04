@@ -1,0 +1,9 @@
+/Tests/test_Engindb/test_consumer_db.py::test_connect_to_db
+/Tests/test_Engindb/test_consumer_db.py::test_last_id
+/Tests/test_Engindb/test_consumer_db.py::test_add_delete_consumer
+/Tests/test_Engindb/test_shipment_db.py::test_connect_to_db
+/Tests/test_Engindb/test_shipment_db.py::test_last_id
+/Tests/test_Engindb/test_shipment_db.py::test_add_delete_shipment
+/Tests/test_Engindb/test_user_db.py::test_connect_to_db
+/Tests/test_Engindb/test_user_db.py::test_add_delete_user
+/Tests/test_Engindb/test_user_db.py::test_last_id

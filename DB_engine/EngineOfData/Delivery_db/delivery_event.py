@@ -39,6 +39,14 @@ class delivery_event_db:
         # print("Отработал sqlalchemy")
         return self.delivery_events
 
+    @property
+    def last_id(self):
+        e_s = self.readall()
+        e_s_id = 0
+        if len(e_s) > 0:
+            e_s_id = e_s[len(e_s) - 1]['id'] + 1
+        return e_s_id
+
     def readall(self):
         with Session(autoflush=False, bind=self.engine) as db:
             # получение всех объектов
