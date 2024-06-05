@@ -88,3 +88,5 @@ class UserDB:
             db.delete(usr)  # удаляем объект
             db.commit()  # сохраняем изменения
         return "Ok"
+
+

@@ -17,12 +17,11 @@ class DeliveryDB:
         self.delivery = {}
         Base.metadata.create_all(bind=self.engine)
 
-    def add(self, index, name, lastname, last_enter, loggin, password, role):
+    def add(self, index, date, user_id, provider_id):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
-            self.delivery = Delivery(id=index, Name=name, LastName=lastname, LastEnter=last_enter, Loggin=loggin,
-                                     Pass=password, Role=role)
+            self.delivery = Delivery(id=index, Date=date, User_id=user_id, Provider_id=provider_id)
             db.add(self.delivery)  # добавляем в бд
             db.commit()  # сохраняем изменения
             print(self.delivery.id)  # можно получить установленный id
@@ -33,7 +32,7 @@ class DeliveryDB:
             self.deliverys = []
             self.delivery = db.query(Delivery).filter(index == Delivery.id)
             for dlv in self.delivery:
-                self.deliverys.append({'id': dlv.id, 'Name': dlv.Name, 'LastName': dlv.LastName, 'Registration': dlv.Registration})
+                self.deliverys.append({'id': dlv.id, 'Date': dlv.Date, 'User_id': dlv.User_id, 'Provider_id': dlv.Provider_id})
         # print("Отработал sqlalchemy")
         return self.deliverys
 
@@ -42,7 +41,7 @@ class DeliveryDB:
         e_s = self.readall()
         e_s_id = 0
         if len(e_s) > 0:
-            e_s_id = e_s[len(e_s) - 1]['id'] + 1
+            e_s_id = e_s[len(e_s) - 1]['id']
         return e_s_id
 
     def readall(self):
@@ -51,33 +50,27 @@ class DeliveryDB:
             self.deliverys = []
             deliverys = db.query(Delivery).all()
             for dlv in deliverys:
-                self.deliverys.append({'id': dlv.id, 'Name': dlv.Name, 'LastName': dlv.LastName, 'Registration': dlv.Registration})
+                self.deliverys.append({'id': dlv.id, 'Date': dlv.Date, 'User_id': dlv.User_id, 'Provider_id': dlv.Provider_id})
         return self.deliverys
 
-    def update(self, index, name='', lastname='', last_enter='1970-01-01 00:00:00', logg_in='', password='', role=-1):
+    def update(self, index, user_id=0, date='1970-01-01 00:00:00', provider_id=0):
         with Session(autoflush=False, bind=self.engine) as db:
             self.delivery = db.query(Delivery).filter(index == Delivery.id).first()
             if None != self.delivery:
 
                 # изменениям значения
 
-                if name != '' and self.delivery.Name != name:
-                    self.delivery.Name = name
-                if lastname != '' and self.delivery.LastName != lastname:
-                    self.delivery.LastName = lastname
-                if last_enter != '1970-01-01 00:00:00' and self.delivery.LastEnter != last_enter:
-                    self.delivery.LastEnter = last_enter
-                if logg_in != '' and self.delivery.Loggin != logg_in:
-                    self.delivery.Loggin = logg_in
-                if password != '' and self.delivery.Pass != password:
-                    self.delivery.Pass = password
-                if role != -1 and self.delivery.Role != role:
-                    self.delivery.Role = role
+                if user_id != '' and self.delivery.User_id != user_id:
+                    self.delivery.User_id = user_id
+                if date != '1970-01-01 00:00:00' and self.delivery.Date != date:
+                    self.delivery.Date = date
+                if provider_id != '' and self.delivery.Provider_id != provider_id:
+                    self.delivery.Provider_id = provider_id
 
                 db.commit()  # сохраняем изменения
 
                 self.delivery = db.query(Delivery).filter(Delivery.id == index).first()
-                print(f"{self.delivery.id}.{self.delivery.Name} ({self.delivery.LastName})")
+                print(f"{self.delivery.id}.{self.delivery.Date}.{self.delivery.User_id} ({self.delivery.Provider_id})")
 
     def delete(self, index):
         with Session(autoflush=False, bind=self.engine) as db:

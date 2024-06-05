@@ -6,9 +6,9 @@ class Delivery(Base):
     __tablename__ = "delivery"
 
     id = Column(Integer, primary_key=True, index=True)
-    Name = Column(String)
-    LastName = Column(String)
-    Registration = Column(Date)
+    Date = Column(Date)
+    User_id = Column(Integer)
+    Provider_id = Column(Integer)
 
 
 

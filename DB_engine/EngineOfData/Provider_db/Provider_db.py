@@ -1,3 +1,5 @@
+import datetime
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from DB_engine.ModelOfData.Provider_Table.provider import Provider, Base
@@ -7,12 +9,12 @@ class ProviderDB:
 
     def __init__(self, ip_connect='', db_name=''):
         self.db_type = 'mysql'
-        self.db_Provider = 'root'
+        self.user_name = 'root'
         self.db_password = ''
         self.ip_connect = '192.168.5.220'
         self.db_name = 'warehouse'
         self.engine = create_engine(
-            f"{self.db_type}://{self.db_Provider}:{self.db_password}@{self.ip_connect}/{self.db_name}")
+            f"{self.db_type}://{self.user_name}:{self.db_password}@{self.ip_connect}/{self.db_name}")
         self.providers = []
         self.provider = {}
         Base.metadata.create_all(bind=self.engine)
@@ -22,15 +24,14 @@ class ProviderDB:
         e_s = self.readall()
         e_s_id = 0
         if len(e_s) > 0:
-            e_s_id = e_s[len(e_s) - 1]['id'] + 1
+            e_s_id = e_s[len(e_s) - 1]['id']
         return e_s_id
 
-    def add(self, index, name, lastname, last_enter, loggin, password, role):
+    def add(self, index, name, lastname, registration):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
-            self.provider = Provider(id=index, Name=name, LastName=lastname, LastEnter=last_enter, Loggin=loggin,
-                                     Pass=password, Role=role)
+            self.provider = Provider(id=index, Name=name, LastName=lastname, Registration=registration)
             db.add(self.provider)  # добавляем в бд
             db.commit()  # сохраняем изменения
             print(self.provider.id)  # можно получить установленный id
@@ -41,7 +42,8 @@ class ProviderDB:
             self.providers = []
             self.provider = db.query(Provider).filter(index == Provider.id)
             for prv in self.provider:
-                self.providers.append({'id': prv.id, 'Name': prv.Name, 'LastName': prv.LastName, 'Registration': prv.Registration})  # f"{usr.id}, {usr.Name}, {usr.LastName}, {usr.LastEnter}, {usr.Loggin}, {usr.Pass}, {usr.Role}"
+                self.providers.append({'id': prv.id, 'Name': prv.Name, 'LastName': prv.LastName,
+                                       'Registration': prv.Registration})
         # print("Отработал sqlalchemy")
         return self.providers
 
@@ -51,7 +53,8 @@ class ProviderDB:
             self.providers = []
             providers = db.query(Provider).all()
             for prv in providers:
-                self.providers.append({'id': prv.id, 'Name': prv.Name, 'LastName': prv.LastName, 'Registration': prv.Registration})
+                self.providers.append(
+                    {'id': prv.id, 'Name': prv.Name, 'LastName': prv.LastName, 'Registration': prv.Registration})
         return self.providers
 
     def update(self, index, name='', lastname='', registration='1970-01-01 00:00:00'):
@@ -75,3 +78,5 @@ class ProviderDB:
             db.delete(usr)  # удаляем объект
             db.commit()  # сохраняем изменения
         return "Ok"
+
+

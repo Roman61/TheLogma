@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from DB_engine.ModelOfData.Consumer_Table.consumer import Consumer, Base
@@ -7,12 +9,12 @@ class ConsumerDB:
 
     def __init__(self, ip_connect='', db_name=''):
         self.db_type = 'mysql'
-        self.db_Consumer = 'root'
+        self.user_name = 'root'
         self.db_password = ''
         self.ip_connect = '192.168.5.220'
         self.db_name = 'warehouse'
         self.engine = create_engine(
-            f"{self.db_type}://{self.db_Consumer}:{self.db_password}@{self.ip_connect}/{self.db_name}")
+            f"{self.db_type}://{self.user_name}:{self.db_password}@{self.ip_connect}/{self.db_name}")
         self.Consumers = []
         self.Consumer = {}
         Base.metadata.create_all(bind=self.engine)
@@ -80,3 +82,13 @@ class ConsumerDB:
             db.delete(cnsm)  # удаляем объект
             db.commit()  # сохраняем изменения
         return "Ok"
+
+
+if __name__ == '__main__':
+    provider_db = ConsumerDB()
+    provider_db.add(
+        index=2,
+        name='Роман',
+        lastname='Александрович',
+        registration=datetime.now()
+    )
