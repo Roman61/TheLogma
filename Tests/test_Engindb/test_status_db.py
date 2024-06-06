@@ -4,14 +4,12 @@ from random import randint
 import MySQLdb
 import sqlalchemy
 
-from DB_engine.EngineOfData.Role_db.Role_db import RoleDB
-from DB_engine.EngineOfData.User_db.User_db import UserDB
+from DB_engine.EngineOfData.Status_db.Status_db import Status
+from DB_engine.ModelOfData.Status_Table.Status import Status
 from DB_engine.ModelOfData.User_Table.User import User
+from DB_engine.EngineOfData.User_db.User_db import UserDB
 from faker import Faker
 
-# class TestUser:
-#
-# def __init__(self):
 usrs = []
 
 

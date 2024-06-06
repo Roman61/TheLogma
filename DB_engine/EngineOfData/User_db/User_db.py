@@ -30,7 +30,7 @@ class UserDB:
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
             self.user = User(id=index, Name=name, LastName=lastname, LastEnter=last_enter, Loggin=loggin,
-                             Pass=password, Role=role)
+                             Pass=password, Role_User_id=role)
             db.add(self.user)  # добавляем в бд
             db.commit()  # сохраняем изменения
             # print(self.user.id)  # можно получить установленный id
@@ -43,7 +43,7 @@ class UserDB:
             for usr in self.user:
                 self.users.append({'id': usr.id, 'Name': usr.Name, 'LastName': usr.LastName, 'LastEnter': usr.LastEnter,
                                    'Loggin': usr.Loggin, 'Pass': usr.Pass,
-                                   'Role': usr.Role})
+                                   'Role_User_id': usr.Role_User_id})
         # print("Отработал sqlalchemy")
         return self.users
 
@@ -54,7 +54,7 @@ class UserDB:
             users = db.query(User).all()
             for usr in users:
                 self.users.append({'id': usr.id, 'Name': usr.Name, 'LastName': usr.LastName, 'LastEnter': usr.LastEnter,
-                                   'Loggin': usr.Loggin, 'Pass': usr.Pass, 'Role': usr.Role})
+                                   'Loggin': usr.Loggin, 'Pass': usr.Pass, 'Role_User_idle': usr.Role_User_id})
         return self.users
 
     def update(self, index, name='', lastname='', last_enter='1970-01-01 00:00:00', logg_in='', password='', role=-1):
@@ -74,8 +74,8 @@ class UserDB:
                     self.user.Loggin = logg_in
                 if password != '' and self.user.Pass != password:
                     self.user.Pass = password
-                if role != -1 and self.user.Role != role:
-                    self.user.Role = role
+                if role != -1 and self.user.Role_User_id != role:
+                    self.user.Role_User_id = role
 
                 db.commit()  # сохраняем изменения
 
