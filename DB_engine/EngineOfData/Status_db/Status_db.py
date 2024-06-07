@@ -1,9 +1,10 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import Session
 from DB_engine.ModelOfData.Status_Table.Status import Status, Base
+import sqlalchemy.engine.reflection
 
 
-class RoleDB:
+class StatusDB:
 
     def __init__(self):
         self.db_type = 'mysql'
@@ -16,6 +17,21 @@ class RoleDB:
         self.statuses = []
         self.status = {}
         Base.metadata.create_all(bind=self.engine)
+
+    def get_table_and_column_names(self):
+        """
+        Функция, которая получает объект engine SQLAlchemy и возвращает словарь,
+        где ключами являются имена таблиц, а значениями - списки имен полей для каждой таблицы.
+        """
+        inspector = inspect(self.engine)
+        table_and_column_names = {}
+
+        for table_name in inspector.get_table_names():
+            columns = inspector.get_columns(table_name)
+            column_names = [column['name'] for column in columns]
+            table_and_column_names[table_name] = column_names
+
+        return table_and_column_names
 
     @property
     def last_id(self):
@@ -48,12 +64,17 @@ class RoleDB:
 
     # Type Name User_id
     def readall(self):
+
         statuses = []
         with Session(autoflush=False, bind=self.engine) as db:
+            # table_names = db.
+
+            # .Inspector.get_table_names()
             # получение всех объектов
             statuses = db.query(Status).all()
-            for status in statuses: # Type Name User_id
-                self.statuses.append({'id': status.id, 'Type': status.Type, 'Name': status.Name, 'User_id': status.User_id})
+            for status in statuses:  # Type Name User_id
+                self.statuses.append(
+                    {'id': status.id, 'Type': status.Type, 'Name': status.Name, 'User_id': status.User_id})
         return self.statuses
 
     # Type Name User_id
@@ -81,3 +102,9 @@ class RoleDB:
             db.delete(role)  # удаляем объект
             db.commit()  # сохраняем изменения
         return "Ok"
+
+
+if __name__ == "__main__":
+    status = StatusDB()
+    for table_name, column_names in status.get_table_and_column_names().items():
+        print(f"Table: '{table_name}' columns: {', '.join(column_names)}")

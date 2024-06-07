@@ -9,4 +9,4 @@ class Status(Base):
     id = Column(Integer, primary_key=True, index=True)
     Type = Column(Integer)
     Name = Column(String)
-    User_id = Column(Integer)
+    User_id = Column(Integer, primary_key=True)
