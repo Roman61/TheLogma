@@ -43,8 +43,8 @@ class ConsumerDB:
             self.Consumer = db.query(Consumer).filter(index == Consumer.id)
             for cnsm in self.Consumer:
                 self.Consumers.append(
-                    {'id': cnsm.id, 'Name': cnsm.Name, 'LastName': cnsm.LastName, 'Registration': cnsm.Registration})
-        # print("Отработал sqlalchemy")
+                    {'id': cnsm.id, 'Name': cnsm.Name, 'LastName': cnsm.LastName, 'Registration': cnsm.Registration,
+                     "fk_user_id": cnsm.fk_user_id})
         return self.Consumers
 
     def readall(self):
@@ -54,7 +54,8 @@ class ConsumerDB:
             consumers = db.query(Consumer).all()
             for cnsm in consumers:
                 self.Consumers.append(
-                    {'id': cnsm.id, 'Name': cnsm.Name, 'LastName': cnsm.LastName, 'Registration': cnsm.Registration})
+                    {'id': cnsm.id, 'Name': cnsm.Name, 'LastName': cnsm.LastName, 'Registration': cnsm.Registration,
+                     "fk_user_id": cnsm.fk_user_id})
         return self.Consumers
 
     def update(self, index, name='', lastname='', registration='1970-01-01 00:00:00', logg_in='', password='', role=-1):

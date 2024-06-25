@@ -15,6 +15,7 @@ class User(Base):
     Loggin = Column(String)
     Pass = Column(String)
     Role_User_id = Column(Integer)
+    IP = Column(String)
 
 
 class UserTable:

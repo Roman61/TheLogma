@@ -9,6 +9,7 @@ class Consumer(Base):
     Name = Column(String)
     LastName = Column(String)
     Registration = Column(Date)
+    fk_user_id = Column(Integer, primary_key=True)
 
 # id Потребитель
 # Name

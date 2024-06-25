@@ -67,7 +67,6 @@ def main():
     print(usr_pass)
     print(usr_role)
 
-
     pass
     # index, name, lastname, last_enter, loggin, password, role
 

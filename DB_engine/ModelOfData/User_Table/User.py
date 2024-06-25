@@ -12,3 +12,4 @@ class User(Base):
     Loggin = Column(String)
     Pass = Column(String)
     Role_User_id = Column(Integer, primary_key=True)
+    IP = Column(String)

@@ -25,12 +25,12 @@ class UserDB:
             e_s_id = e_s[len(e_s) - 1]['id']
         return e_s_id
 
-    def add(self, index, name, lastname, last_enter, loggin, password, role):
+    def add(self, index, name, lastname, last_enter, loggin, password, role, ip):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
             self.user = User(id=index, Name=name, LastName=lastname, LastEnter=last_enter, Loggin=loggin,
-                             Pass=password, Role_User_id=role)
+                             Pass=password, Role_User_id=role, IP=ip)
             db.add(self.user)  # добавляем в бд
             db.commit()  # сохраняем изменения
             # print(self.user.id)  # можно получить установленный id
@@ -88,5 +88,3 @@ class UserDB:
             db.delete(usr)  # удаляем объект
             db.commit()  # сохраняем изменения
         return "Ok"
-
-

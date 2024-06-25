@@ -47,11 +47,12 @@ def test_add_delete_user():
         usr.Loggin = fake.password(length=randint(10, 20))
         usr.Pass = fake.password(length=randint(10, 20))
         usr.Role_User_id = roles[randint(0, len_roles)]['id']
+        usr.IP = fake.ipv4()
         usr_s.append(usr)
     len_db_2 = len(euser.readall())
     for i in usr_s:
         euser.add(index=i.id, name=i.Name, lastname=i.LastName, last_enter=i.LastEnter, loggin=i.Loggin,
-                  password=i.Pass, role=i.Role_User_id)
+                  password=i.Pass, role=i.Role_User_id, ip=i.IP)
         usrs.append(i)
 
     len_self = len(usrs)

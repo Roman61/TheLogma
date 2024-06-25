@@ -6,6 +6,7 @@ import pytest
 import sqlalchemy
 
 from DB_engine.EngineOfData.Consumer_db.Consumer_db import ConsumerDB
+from DB_engine.EngineOfData.User_db.User_db import UserDB
 from DB_engine.ModelOfData.Consumer_Table.consumer import Consumer
 from faker import Faker
 
@@ -27,27 +28,21 @@ def test_connect_to_db():
     assert ecnsmr is not None
 
 
-def test_last_id():
-    euser = ConsumerDB()
-    all_ = euser.readall()
-    assert euser.last_id == all_[len(all_) - 1]['id']
-
-
 def test_add_delete_consumer():
     fake = Faker("ru_RU")
 
-    def helper_range(digital):
-        yield from range(1, digital)
-
     e_consumer = ConsumerDB()
+    euser = UserDB()
+    users = euser.readall()
     cnsmr_s = []
     j = last_id_to_rang_writing_test(e_consumer)
     for k in range(*j):
         cnsmr = Consumer()
-        cnsmr.id = k  # randint(10, 20000)
+        cnsmr.id = k
         cnsmr.Name = fake.first_name()
         cnsmr.LastName = fake.last_name()
         cnsmr.Registration = datetime.time
+        cnsmr.fk_user_id = users[len(users)].id
         cnsmr_s.append(cnsmr)
     len_db_2 = len(e_consumer.readall())
     for i in cnsmr_s:
@@ -66,6 +61,12 @@ def test_add_delete_consumer():
         e_consumer.delete(index=i.id)
     len_execute_db = len(e_consumer.readall())
     assert len_execute_db == len_db_2 - len_self
+
+
+def test_last_id():
+    euser = ConsumerDB()
+    all_ = euser.readall()
+    assert euser.last_id == all_[len(all_) - 1]['id']
 
 
 # def test_delete_consumer():
