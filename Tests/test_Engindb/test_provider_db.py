@@ -6,6 +6,7 @@ import pytest
 import sqlalchemy
 
 from DB_engine.EngineOfData.Provider_db.Provider_db import ProviderDB
+from DB_engine.EngineOfData.User_db.User_db import UserDB
 from DB_engine.ModelOfData.Provider_Table.provider import Provider
 from faker import Faker
 
@@ -36,8 +37,8 @@ def test_last_id():
 def test_add_delete_consumer():
     fake = Faker("ru_RU")
 
-    def helper_range(digital):
-        yield from range(1, digital)
+    e_user = UserDB()
+    users = e_user.readall()
 
     e_consumer = ProviderDB()
     cnsmr_s = []
@@ -48,12 +49,13 @@ def test_add_delete_consumer():
         cnsmr.Name = fake.first_name()
         cnsmr.LastName = fake.last_name()
         cnsmr.Registration = datetime.time
+        usr_rnd_id = randint(0, len(users) - 1)
+        cnsmr.User_id = users[usr_rnd_id]['id']
         cnsmr_s.append(cnsmr)
     len_db_2 = len(e_consumer.readall())
     for i in cnsmr_s:
-        e_consumer.add(index=i.id, name=i.Name, lastname=i.LastName, registration=i.Registration)
+        e_consumer.add(index=i.id, name=i.Name, lastname=i.LastName, registration=i.Registration, user_id=i.User_id)
         cnsmrs.append(i)
-
     len_self = len(cnsmrs)
     len_execute_db = len(e_consumer.readall())
     result = len_execute_db - len_db_2 == len_self

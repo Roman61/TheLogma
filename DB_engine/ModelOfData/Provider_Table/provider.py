@@ -9,6 +9,7 @@ class Provider(Base):
     Name = Column(String(45))
     LastName = Column(String(45))
     Registration = Column(Date)
+    user_id = Column(Integer)
 
 # id Поставщик
 # Name

@@ -27,11 +27,12 @@ class ProviderDB:
             e_s_id = e_s[len(e_s) - 1]['id']
         return e_s_id
 
-    def add(self, index, name, lastname, registration):
+    # add(index=i.id, name=i.Name, lastname=i.LastName, registration=i.Registration, user_id=i.User_id)
+    def add(self, index, name, lastname, registration, user_id):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
-            self.provider = Provider(id=index, Name=name, LastName=lastname, Registration=registration)
+            self.provider = Provider(id=index, Name=name, LastName=lastname, Registration=registration, user_id=user_id)
             db.add(self.provider)  # добавляем в бд
             db.commit()  # сохраняем изменения
             print(self.provider.id)  # можно получить установленный id
@@ -78,5 +79,3 @@ class ProviderDB:
             db.delete(usr)  # удаляем объект
             db.commit()  # сохраняем изменения
         return "Ok"
-
-

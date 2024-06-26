@@ -17,7 +17,7 @@ def last_id_to_rang_writing_test(e_):
     e_s = e_.readall()
     e_s_id = 0
     if len(e_s) > 0:
-        e_s_id = e_s[len(e_s) - 1]['id'] + 1
+        e_s_id = e_s[len(e_s) - 1].id + 1
     rand_bgn = randint(e_s_id, e_s_id + 10)
     rand_end = randint(rand_bgn, rand_bgn + 50) + 1
     return rand_bgn, rand_end
@@ -42,11 +42,12 @@ def test_add_delete_consumer():
         cnsmr.Name = fake.first_name()
         cnsmr.LastName = fake.last_name()
         cnsmr.Registration = datetime.time
-        cnsmr.fk_user_id = users[len(users)].id
+        user = users[len(users)-1]
+        cnsmr.User_id = user['id']
         cnsmr_s.append(cnsmr)
     len_db_2 = len(e_consumer.readall())
     for i in cnsmr_s:
-        e_consumer.add(index=i.id, name=i.Name, lastname=i.LastName, registration=i.Registration)
+        e_consumer.add(index=i.id, name=i.Name, lastname=i.LastName, registration=i.Registration, user_id=i.User_id)
         cnsmrs.append(i)
 
     len_self = len(cnsmrs)
@@ -66,7 +67,7 @@ def test_add_delete_consumer():
 def test_last_id():
     euser = ConsumerDB()
     all_ = euser.readall()
-    assert euser.last_id == all_[len(all_) - 1]['id']
+    assert euser.last_id == all_[len(all_) - 1].id
 
 
 # def test_delete_consumer():

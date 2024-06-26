@@ -46,11 +46,12 @@ def test_add_delete_user():
         usr.Loggin = fake.password(length=randint(10, 20))
         usr.Pass = fake.password(length=randint(10, 20))
         usr.Role_User_id = status_s[randint(0, len_roles)]['id']
+        usr.IP = fake.ipv4()
         usr_s.append(usr)
     len_db_2 = len(euser.readall())
     for i in usr_s:
         euser.add(index=i.id, name=i.Name, lastname=i.LastName, last_enter=i.LastEnter, loggin=i.Loggin,
-                  password=i.Pass, status=i.Role_User_id)
+                  password=i.Pass, role=i.Role_User_id, ip=i.IP)
         usrs.append(i)
 
     len_self = len(usrs)
@@ -70,8 +71,7 @@ def test_add_delete_user():
 def test_last_id():
     euser = StatusDB()
     all_ = euser.readall()
-    assert euser.last_id == all_[len(all_)-1]['id']
-
+    assert euser.last_id == all_[len(all_) - 1]['id']
 
 # def test_delete_user():
 #     # = "mysql://root:@192.168.5.220/warehouse"

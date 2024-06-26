@@ -25,7 +25,7 @@ class ShipmentDB:
             e_s_id = e_s[len(e_s) - 1]['id']
         return e_s_id
 
-    def add(self, index, date, user_id, consumer_id):
+    def add(self, index, date, user_id, consumer_id, weight):
         # создаем сессию подключения к бд
         with Session(autoflush=False, bind=self.engine) as db:
             # создаем объект Person для добавления в бд
@@ -34,6 +34,7 @@ class ShipmentDB:
             self.shipment.date = date
             self.shipment.User_id = user_id
             self.shipment.Consumer_id = consumer_id
+            self.shipment.weight = weight
 
             db.add(self.shipment)  # добавляем в бд
             db.commit()  # сохраняем изменения
@@ -67,12 +68,13 @@ class ShipmentDB:
                         'id': shipment.id,
                         'date': shipment.date,
                         'user_id': shipment.User_id,
-                        'Consumer_id': shipment.Consumer_id
+                        'Consumer_id': shipment.Consumer_id,
+                        'Weight':shipment.Weight
                     }
                 )
         return self.shipments
 
-    def update(self, index, date='', user_id='', consumer_id=''):
+    def update(self, index, date, user_id, consumer_id):
         with Session(autoflush=False, bind=self.engine) as db:
             self.shipment = db.query(Shipment).filter(index == Shipment.id).first()
             if None != self.shipment:

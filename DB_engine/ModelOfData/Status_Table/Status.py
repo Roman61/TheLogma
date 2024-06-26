@@ -5,8 +5,9 @@ from sqlalchemy import Column, Integer, String, Date
 
 # id	Type	Name	User_id
 class Status(Base):
-    __tablename__ = "role"
+    __tablename__ = "status"
     id = Column(Integer, primary_key=True, index=True)
+    User_id = Column(Integer, primary_key=True)
     Type = Column(Integer)
     Name = Column(String)
-    User_id = Column(Integer, primary_key=True)
+

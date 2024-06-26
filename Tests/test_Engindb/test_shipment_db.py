@@ -48,9 +48,10 @@ def test_add_delete_shipment():
     # connect_str = "mysql://root:@192.168.5.220/warehouse"
     e_shipment = ShipmentDB()
     e_consumer = ConsumerDB()
+    consumers = e_consumer.readall()
     e_user = UserDB()
     users = e_user.readall()
-    consumers = e_consumer.readall()
+
     result = False
 
     #  try:
@@ -58,16 +59,18 @@ def test_add_delete_shipment():
     ids = last_id_to_rang_writing_test(e_shipment)
     for k in range(*ids):
         consumers_rnd_id = randint(0, len(consumers) - 1)
-        usr_rnd_id = randint(0, len(users) - 1)
         shipment = Shipment()
         shipment.id = k  # randint(10, 20000)
         shipment.date = datetime.now()
-        shipment.Consumer_id = consumers[consumers_rnd_id]['id']
+        consumer = consumers[consumers_rnd_id]
+        shipment.Consumer_id = consumer.id
+        usr_rnd_id = randint(0, len(users) - 1)
         shipment.User_id = users[usr_rnd_id]['id']
+        shipment.Weight = fake.random_int(1, 10000)
         shipment_s.append(shipment)
     len_db_2 = len(e_shipment.readall())
     for i in shipment_s:
-        e_shipment.add(index=i.id, date=i.date, user_id=i.User_id, consumer_id=i.Consumer_id)
+        e_shipment.add(index=i.id, date=i.date, user_id=i.User_id, consumer_id=i.Consumer_id, weight=i.Weight)
         shipments.append(i)
 
     len_self = len(shipments)
@@ -82,7 +85,6 @@ def test_add_delete_shipment():
         e_shipment.delete(index=i.id)
     len_execute_db = len(e_shipment.readall())
     assert len_execute_db == len_db_2 - len_self
-
 
 # def test_delete_shipment():
 #     e_shipment = ShipmentDB()
