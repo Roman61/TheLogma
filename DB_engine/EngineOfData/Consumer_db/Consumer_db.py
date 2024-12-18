@@ -83,5 +83,8 @@ if __name__ == '__main__':
         index=2,
         name='Роман',
         lastname='Александрович',
-        registration=datetime.now()
+        registration=datetime.now(),
+        user_id=1
     )
+
+
