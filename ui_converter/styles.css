@@ -1,0 +1,76 @@
+#Form {background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.017, y2:0, stop:0 rgba(137, 180, 255, 255), stop:0.363636 rgba(126, 124, 192, 255), stop:0.539773 rgba(115, 67, 127, 255), stop:0.664773 rgba(146, 38, 90, 255), stop:0.806818 rgba(170, 78, 69, 255), stop:1 rgba(205, 186, 42, 255));
+color: rgb(255, 255, 255);
+font: 87 8pt "Arial Black";}
+#label {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.477273 rgba(255, 255, 255, 0));
+color: rgb(255, 255, 255);
+font: 87 14pt "Arial Black";}
+#label_2 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.477273 rgba(255, 255, 255, 0));
+color: rgb(255, 255, 255);
+font: 87 14pt "Arial Black";}
+#pushButton_2 {color: rgb(255, 255, 255);
+font: 87 20pt "Arial Black";
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.443182 rgba(255, 255, 255, 171));}
+#pushButton_3 {color: rgb(255, 255, 255);
+font: 87 20pt "Arial Black";
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.443182 rgba(255, 255, 255, 171));}
+#pushButton_4 {color: rgb(255, 255, 255);
+font: 87 20pt "Arial Black";
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.443182 rgba(255, 255, 255, 171));}
+#pushButton_5 {color: rgb(255, 255, 255);
+font: 87 20pt "Arial Black";
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.443182 rgba(255, 255, 255, 171));}
+#pushButton {color: rgb(255, 255, 255);
+font: 87 20pt "Arial Black";
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.443182 rgba(255, 255, 255, 171));}
+#pushButton_6 {color: rgb(255, 255, 255);
+font: 87 20pt "Arial Black";
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.443182 rgba(255, 255, 255, 171));}
+#label_172 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#label_174 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#label_171 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#label_176 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#label_177 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#label_175 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#label_173 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_80 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_79 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_81 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_77 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_82 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_76 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_78 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_83 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_84 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_85 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_86 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_88 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_89 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_87 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_69 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_70 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_71 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_72 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_73 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_74 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_75 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_62 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_63 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_64 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_65 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_66 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_67 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_68 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_20 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_21 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_22 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_23 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_24 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_25 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_26 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_34 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_35 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_36 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_37 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_38 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_39 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
+#groupBox_40 {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.448864 rgba(255, 255, 255, 25));}
